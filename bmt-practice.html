@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Bright Mind Tech</title>
+    <style>
+        :root {
+            --dark-navy: #001932;
+            --deep-blue: #003B64;
+            --medium-blue: #00639B;
+            --ocean-blue: #0087CA;
+            --bright-blue: #00ABE7;
+            --cyan: #00DDF9;
+        }
+       
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: white;
+            color: #333;
+        }
+       
+        .container {
+            width: 80%;
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+        }
+       
+        header {
+            background: var(--medium-blue);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+        }
+       
+        .content {
+            padding: 20px;
+            background: white;
+            margin-top: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+       
+        footer {
+            background: var(--dark-navy);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 30px;
+        }
+       
+        .student-box {
+            background: var(--ocean-blue);
+            color: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+            text-align: center;
+        }
+       
+        button {
+            background: var(--bright-blue);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+       
+        button:hover {
+            background: var(--medium-blue);
+        }
+ 
+        /* Photo section styles */
+        .photo-section {
+            margin: 20px 0;
+            text-align: center;
+        }
+       
+        .photo-container {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--bright-blue);
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+       
+        .photo-container img {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: cover;
+        }
+       
+        .photo-upload {
+            margin-top: 15px;
+        }
+       
+        .photo-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--medium-blue);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Bright Mind Tech</h1>
+    </header>
+ 
+    <div class="container">
+        <div class="content">
+            <div class="student-box">
+                <h2>Hello, I am <span id="student-name">Your Name</span></h2>
+                <p>DevOps Training Participant</p>
+               
+                <!-- Photo Section -->
+                <div class="photo-section">
+                    <div class="photo-container" id="photoContainer">
+                        <div class="photo-placeholder">Upload Photo</div>
+                    </div>
+                    <div class="photo-upload">
+                        <input type="file" id="photoUpload" accept="image/*" style="display: none;">
+                        <button onclick="document.getElementById('photoUpload').click()">Upload Photo</button>
+                    </div>
+                </div>
+            </div>
+           
+            <h3>DevOps Training Website</h3>
+            <p>This simple website will be used throughout the course to practice:</p>
+            <ul>
+                <li>Git - version control</li>
+                <li>GitHub</li>
+                <li>Docker containerization</li>
+                <li>Kubernetes</li>
+                <li>Cloud Service Providers and Services</li>
+                <li>And more...</li>
+            </ul>
+           
+            <div style="text-align: center; margin-top: 30px;">
+                <p>Last updated: <span id="timestamp">Not updated yet</span></p>
+                <button onclick="updateTimestamp()">Update Timestamp</button>
+            </div>
+        </div>
+    </div>
+ 
+    <footer>
+        <p>Bright Mind Tech &copy; <span id="year">2025</span></p>
+    </footer>
+ 
+    <script>
+        // Simple JavaScript function
+        function updateTimestamp() {
+            let timestamp = document.getElementById('timestamp');
+            let now = new Date();
+            timestamp.textContent = now.toLocaleString();
+        }
+ 
+        // Set the current year in the footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+ 
+        // Photo upload functionality
+        document.getElementById('photoUpload').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const photoContainer = document.getElementById('photoContainer');
+                    photoContainer.innerHTML = `<img src="${event.target.result}" alt="Student Photo">`;
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+</body>
+</html>
